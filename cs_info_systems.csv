@@ -1,0 +1,24 @@
+Class Prefix,Class Number,Class Name,Suggested Semester,Suggested Year,Hours
+UNIV,110,Freshman Seminar I,Fall,year 1,1
+ENGL,102,English Composition & Grammar,Fall,year 1,3
+GE,118,Precalculus,Fall,year 1,3
+CSC,114,Intro to Computer Science,Fall,year 1,3
+,,Fine Arts,Fall,year 1,2
+,,History Elective,Fall,year 1,3
+UNIV,120,Freshman Seminar II,Spring,year 1,1
+ENGL,103,English Composition & Vocabulary,Spring,year 1,3
+MATH,165,Calculus I,Spring,year 1,4
+CSC,115,Programming I,Spring,year 1,3
+CSC,160,Major Orientation Seminar,Spring,year 1,1
+,,Social Science I,Spring,year 1,3
+ENGL,201,World literature I,Fall,year 2,3
+CSC,215,Programming II,Fall,year 2,3
+CSC,230,Object Oriented Programming,Fall,year 2,3
+HLTH,185,Health Concepts,Fall,year 2,3
+,,Science/Lab,Fall,year 2,4
+SPCH,314,Public Speaking,Spring,year 2,3
+CSC,260,Soph Seminar in CS,Spring,year 2,1
+MATH,262,Discrete Methods,Spring,year 2,3
+BAUD,115,Intro to Business,Spring,year 2,3
+,,Social Science II,Spring,year 2,3
+,,PE Elective,Spring,year 2,1
