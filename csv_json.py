@@ -13,7 +13,7 @@ def readcsv(csvfile):
        course = data.fieldnames
        for row in data:
            list.extend([{course[i]:row[course[i]] for i in range(len(course))}])     f.close()
-     jsonconverter(list)
+     return(list)
 
 def jsonconverter(list, jsonfile):
        with open(jsonfile, 'w') as f:
@@ -22,15 +22,13 @@ def jsonconverter(list, jsonfile):
 
 
 def main():
-      csvfile = sys.argv[1]
-      jsonfile = sys.argv[2]
       try:
           sysargvcheck()
       except IndexError:
           print "Please enter a csv filename and json filename"
           sys.exit()
-      readcsvfile(csvfile)
-      jsonconverter(list, jsonfile)
+      csvfile = readcsvfile(sys.argv[1])
+      jsonconverter(list,sys.argv[2])
 
 if __name__ == '__main__':
     main() 
