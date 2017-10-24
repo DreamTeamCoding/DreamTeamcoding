@@ -22,13 +22,13 @@ def jsonconverter(list, jsonfile):
 
 
 def main():
+      csvfile = sys.argv[1]
+      jsonfile = sys.argv[2]
       try:
           sysargvcheck()
       except IndexError:
           print "Please enter a csv filename and json filename"
           sys.exit()
-      csvfile = sys.argv[1]
-      jsonfile = sys.argv[2]
       readcsvfile(csvfile)
       jsonconverter(list, jsonfile)
 
