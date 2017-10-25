@@ -3,7 +3,7 @@ import csv
 import json
 
 def sysargvcheck():
-    if len(sys.argv) < 3
+    if len(sys.argv) < 3:
       print "Csv Filename:" + str(sys.argv[1]) + "Json Filename:" + str(sys.argv[2])
 
 def readcsv(csvfile):
