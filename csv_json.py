@@ -1,3 +1,8 @@
+"""
+csv converter
+Michael Hilton
+software Methodology 
+"""
 import sys
 import csv
 import json
