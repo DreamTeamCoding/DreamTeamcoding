@@ -1,0 +1,44 @@
+Class Prefix,Class Number,Class Name,Suggested Semester,Suggested Year,Hours
+UNIV,110,Freshman Seminar I,Fall,1,1
+ENGL,102,English Composition & Grammar,Fall,1,3
+,,Fine Arts I,Fall,1,2
+GE,118,Precalculus,Fall,1,3
+,,History Elective,Fall,1,3
+CSC,114,Intro to Computer Science,Fall,1,3
+UNIV,120,Freshman Seminar II,Spring,1,1
+ENGL,103,English Composition & Vocabulary,Spring,1,3
+CSC,160,Major Orientation Seminar ,Spring,1,1
+CSC,115,Programming I,Spring,1,3
+MATH,165,Calculus I,Spring,1,4
+,,Social Science I,Spring,1,3
+ENGL,201,World Literature I,Fall,2,3
+,,Science/Lab,Fall,2,4
+,,PE Elective,Fall,2,1
+CSC,215,Programming II,Fall,2,3
+CSC,230,Object Oriented Programming,Fall,2,3
+SPCH,314,Public Speaking,Spring,2,3
+CSC,260,Soph. Seminar in CS,Spring,2,1
+CSC,262,Discrete Methods,Spring,2,3
+,,Social Science II,Spring,2,3
+HLTH,185,Health Concepts,Spring,2,2
+,,Free Elective 1,Spring,2,3
+CSC,218,Data Structures,Fall,3,3
+MATH,351,Linear Algebra,Fall,3,3
+,,Concentration Elective I,Fall,3,4
+,,Free Elective 2,Fall,3,3
+,,Major Core Elective 1,Fall,3,3
+CSC,314,Computer Architecture ,Spring,3,3
+,,Major Core Elective 2,Spring,3,3
+,,Concentration Elective II,Spring,3,3
+CSC,305,Info to Bioinformatics,Spring,3,3
+CSC,325,Database Systems,Spring,3,3
+CSC,335,Intro Web Design,Fall,4,3
+CSC,410,Net-Centric Computing,Fall,4,3
+CSC,318,Algorithms,Fall,4,3
+,,Free Elective 3,Fall,4,3
+,,Free Elective 4,Fall,4,3
+CSC,401,Data Mining & Machine Learning,Spring,4,3
+CSC,460,Senior Seminar in CS,Spring,4,2
+CSC,414,Python & Visualization,Spring,4,3
+CSC,451,Numerical & Symbolic Computing,Spring,4,3
+,,Free Elective 5,Spring,4,4
