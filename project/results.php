@@ -13,7 +13,7 @@
 	  <link href="style.css" rel="stylesheet">
 	</head>
 	<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default">
 		  <div class="container">
 			<div class="navbar-header">
 			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -35,64 +35,173 @@
 		  <h1 style="font-size:700%;">A.P.O.S</h1>
 		  <i><p style="font-size:250%;">Automatic Plan of Study</p></i>
 		</div>
-  
+		<img src="/logo.png" style="height: 100px; width:100px; position: absolute; left:0;top:0;">
 		<center>
 			 <div class="well well-lg">
-                    <label for="sel1" style="font-size:150%">Select courses taken:</label>
+			 					<div style="text-align:left">
+                    <label for="sel1" style="font-size:170%;">Courses Required For Graduation:</label><br><hr>
+										
+										
+								 
 
 
-	<p>
+
     <?php
+		error_reporting( error_reporting() & ~E_NOTICE );
     session_start();
-    $courses = $_SESSION['courses'];
+		$courses = $_SESSION['courses'];
+		$coreElec = $_SESSION['coreElec'];
+		$relatedArea = $_SESSION['relatedArea'];
+		$concenCore = $_SESSION['concenCore'];
     $coreCourse = 34;
-    $coreElec = 6;
-    $relatedArea = 10;
-    $concenCore = 12;
-    $concenElec = 7;
-    $freeElec = 16;
+    $coreElecHR = 6;
+    $relatedAreaHR = 10;
+    $concenCoreHR = 12;
+    $concenElecHR = 7;
+    $freeElecHR = 16;
 
-		$x=0;
-		foreach($courses[$x] as $courses) {
-			echo $courses[$x], '<br>';
-			$x++;
-		}
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      
-              $servername = 'localhost';
-              $DBusername = 'root';
-              $DBpassword = '';
-              $dbname = "concentration";
-      
-          // Create connection
-          $conn = new mysqli($servername, $DBusername, $DBpassword, $dbname);
-          // Check connection
-          if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-          } 
-          
+		echo "<br>";
+		
+		
+		
+		$servername = 'localhost';
+		$DBusername = 'root';
+		$DBpassword = '';
+		$dbname = "concentration";
+		
+		// Create connection
+		$conn = new mysqli($servername, $DBusername, $DBpassword, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+		
     $sql = "SELECT * FROM `dscience`";
     $results = $conn->query($sql);
-    echo sizeof($courses);
-    while($row=$results->fetch_assoc()) {
+		$sql2 = "SELECT * FROM `dscience` WHERE prefix = 'CSC' AND (number != 240 ) AND (number != 300 )AND (number != 315 )AND (number != 322 )AND (number != 409 )AND (number != 412 )AND (number != 413 )AND (number != 415 )AND (number != 420 )AND (number != 421 )AND (number != 430 )AND (number != 435 )AND (number != 452 )";
+		$results2 = $conn->query($sql2);
+		$sql3 = "SELECT * FROM `dscience` WHERE (prefix = 'CSC' OR prefix = 'MATH') AND (number = 300 )AND (number = 315 )AND (number = 322 )AND (number = 409 )AND (number = 412 )AND (number = 413 )AND (number= 415 )AND (number = 420 )AND (number = 421 )AND (number = 430 )AND (number = 435 )AND (number = 452 )";
+		$results3 = $conn->query($sql3);
+		//Core Courses
+		echo "<label for='sel1' style='font-size:150%;'>Core Courses:<span style='color:red'>*</span></label><br>";
+		echo "<div style='margin-left:25px'>";
+		$x=0;
 
-        for($x=0;$x<sizeof($courses);$x++) {
+    while($row=$results2->fetch_assoc()) {
+				$x=0;
+				for($x;$x<sizeof($courses);$x++) {
             if($row["number"] == $courses[$x]) {
 								$coreCourse = $coreCourse - $row["hours"];
+								break;
+						}
+						else {
+							if($x == sizeof($courses)-1) {
+								echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
 
-            }
-
-        }
+							}
+						}
+					}
     }
+		echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $coreCourse . "</label><br><hr>";
+		
+		//Core Electives
+		echo "<label for='sel1' style='font-size:150%;'>Core Electives:</label><br>";
+		echo "<div style='margin-left:25px'>";
+		$x=0;
 
+    while($row=$results3->fetch_assoc()) {
+			echo $row;
+				$x=0;
+				for($x;$x<sizeof($coreElec);$x++) {
+            if($row["number"] == $coreElec[$x]) {
+								$coreElecHR = $coreElecHR - $row["hours"];
+								break;
+						}
+						else {
+							if($x==sizeof($courses)-1) {
+								echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
+
+							}
+						}
+					}
     }
+		echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $coreElecHR . "</label><br><hr>";
+		
+		//Related Area
+		echo "<label for='sel1' style='font-size:150%;'>Related Area:<span style='color:red'>*</span></label><br>";
+		echo "<div style='margin-left:25px'>";
+		$x=0;
+		
+		while($row=$results->fetch_assoc()) {
+			$x=0;
+			for($x;$x<sizeof($relatedArea);$x++) {
+				if($row["number"] == $relatedArea[$x]) {
+					$relatedAreaHR = $relatedAreaHR - $row["hours"];
+					break;
+				}
+				else {
+					if($x==sizeof($courses)-1) {
+						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
 
+					}
+					}
+				}
+			}
+				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $relatedAreaHR . "</label><br><hr>";
+
+		
+		//Concentration Core
+		echo "<label for='sel1' style='font-size:150%;'>Concentration Core:<span style='color:red'>*</span></label><br>";
+		echo "<div style='margin-left:25px'>";
+		$x=0;
+		
+		while($row=$results->fetch_assoc()) {
+			$x=0;
+			for($x;$x<sizeof($concenCore);$x++) {
+				if($row["number"] == $concenCore[$x]) {
+					$concenCoreHR = $concenCoreHR - $row["hours"];
+					break;
+				}
+				else {
+					if($x==sizeof($courses)-1) {
+						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
+
+					}
+					}
+				}
+			}
+				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $concenCoreHR . "</label><br><hr>";
+
+
+
+		//Concentration Electives
+		echo "<label for='sel1' style='font-size:150%;'>Concentration Electives:<span style='color:red'>*</span></label><br>";
+		echo "<div style='margin-left:25px'>";
+		$x=0;
+		
+		while($row=$results->fetch_assoc()) {
+			$x=0;
+			for($x;$x<sizeof($concenElec);$x++) {
+				if($row["number"] == $concenElec[$x]) {
+					$concenElecHR = $concenElecHR - $row["hours"];
+					break;
+				}
+				else {
+					if($x==sizeof($courses)-1) {
+						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
+
+					}
+					}
+				}
+			}
+				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $concenElecHR . "</label><br><hr>";
 		?>
-		</p>
+		</div>
+
 			</div>
 		</center>
 		
-		<div class="container-fluid bg-blue">
+		<div class="container-fluid bg-blue" style="text-align:left">
 		</div>
 		
 	</nav>  	

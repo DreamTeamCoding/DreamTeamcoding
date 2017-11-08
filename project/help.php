@@ -65,7 +65,7 @@
 			  </ul>
 			</div>
 		  </div>
-		
+			<img src="/logo.png" style="height: 100px; width:100px; position: absolute; left:0;top:0;">
 
 		<div class="jumbotron text-center">
 		  <h1 style="font-size:700%;">A.P.O.S</h1>
@@ -77,18 +77,25 @@
 				<div class="form-group" align="center">
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <div class="form-group">
-                            <label for="sel1">Select concentration:</label>
-                            <select class="form-control"  style="width:40%" id="concen">
-                              <option value="<?php echo $choice=1;?>" name="dsci">Data Science</option>
-                              <option value="<?php echo $choice=2;?>" name="infor">Information Systems</option>
-                            </select>
+														<div style='margin-left:25px; text-align: left;'>
+                            <label for="sel1"><p  style="font-size:150%; text-align:left;">Instructions:</p></label><br>
+														<div style='margin-left:25px'><br>
+                            1. Select concentration<br>
+														2. Choose the courses that you have taken or are currently taking<br>
+														3. Await your results<br><hr>
+														</div>
+														<label for="sel1"><p  style="font-size:150%;">Your Results:</p></label>
+														<div style='margin-left:25px'><br>
+														1. Your results will output in its designated category<br>
+														2. The results page displays the courses that have not been taken in each category<br>
+														3. The remaining number of credit hours is displayed under each category<br>
                           </div>
+													</div>
+
 						<div style="text-align:center;">
-							<input type="submit" class="btn" role="button"></input>
 						</div><br/>
-						<p> Need help?
-						<a href="/help.php" style="color:#009eee" onMouseOver="this.style.color='blue'"><strong>Click here</strong></a>
-						<img src="/logo.png" style="height: 100px; width:100px; position: absolute; left:0;top:0;">
+						<p>
+						<a href="/index.php" style="color:#009eee" onMouseOver="this.style.color='blue'"><strong>Return to the previous page</strong></a>
 						</p>
 					</form> 
 				</div>	
