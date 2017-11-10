@@ -75,7 +75,7 @@
           if ($conn->connect_error) {
               die("Connection failed: " . $conn->connect_error);
           } 
-          //Core Electives
+          //Core Courses
           if($_POST["csc114"] == 1) {
             array_push($coreCourses, "114");
           }
@@ -190,133 +190,133 @@
 
           //Concentration Electives
           if($_POST["math265"] == 1) {
-            array_push($coreElec, "265");
+            array_push($concenElec, "265");
           }
           if($_POST["math267"] == 1) {
-            array_push($coreElec, "267");
+            array_push($concenElec, "267");
           }
           if($_POST["math275"] == 1) {
-            array_push($coreElec, "275");
+            array_push($concenElec, "275");
           }
           if($_POST["math345"] == 1) {
-            array_push($coreElec, "345");
+            array_push($concenElec, "345");
           }
           if($_POST["math350"] == 1) {
-            array_push($coreElec, "350");
+            array_push($concenElec, "350");
           }
           if($_POST["math352"] == 1) {
-            array_push($coreElec, "352");
+            array_push($concenElec, "352");
           }
           if($_POST["math354"] == 1) {
-            array_push($coreElec, "354");
+            array_push($concenElec, "354");
           }
           if($_POST["math358"] == 1) {
-            array_push($coreElec, "358");
+            array_push($concenElec, "358");
           }
           if($_POST["math360"] == 1) {
-            array_push($coreElec, "360");
+            array_push($concenElec, "360");
           }
           if($_POST["math365"] == 1) {
-            array_push($coreElec, "365");
+            array_push($concenElec, "365");
           }
           if($_POST["math366"] == 1) {
-            array_push($coreElec, "366");
+            array_push($concenElec, "366");
           }
           if($_POST["math400"] == 1) {
-            array_push($coreElec, "400");
+            array_push($concenElec, "400");
           }
           if($_POST["math410"] == 1) {
-            array_push($coreElec, "410");
+            array_push($concenElec, "410");
           }
           if($_POST["math450"] == 1) {
-            array_push($coreElec, "450");
+            array_push($concenElec, "450");
           }
           if($_POST["math452"] == 1) {
-            array_push($coreElec, "452");
+            array_push($concenElec, "452");
           }
           if($_POST["math454"] == 1) {
-            array_push($coreElec, "454");
+            array_push($concenElec, "454");
           }
           if($_POST["math455"] == 1) {
-            array_push($coreElec, "455");
+            array_push($concenElec, "455");
           }
           if($_POST["math465"] == 1) {
-            array_push($coreElec, "465");
+            array_push($concenElec, "465");
           }
           if($_POST["biol101"] == 1) {
-            array_push($coreElec, "101");
+            array_push($concenElec, "101");
           }
           if($_POST["biol102"] == 1) {
-            array_push($coreElec, "102");
+            array_push($concenElec, "102");
           }
           if($_POST["biol210"] == 1) {
-            array_push($coreElec, "210");
+            array_push($concenElec, "210");
           }
           if($_POST["biol220"] == 1) {
-            array_push($coreElec, "220");
+            array_push($concenElec, "220");
           }
           if($_POST["biol221"] == 1) {
-            array_push($coreElec, "221");
+            array_push($concenElec, "221");
           }
           if($_POST["biol300"] == 1) {
-            array_push($coreElec, "300");
+            array_push($concenElec, "300");
           }
           if($_POST["chem103"] == 1) {
-            array_push($coreElec, "103");
+            array_push($concenElec, "103");
           }
           if($_POST["chem1031"] == 1) {
-            array_push($coreElec, "1031");
+            array_push($concenElec, "1031");
           }
           if($_POST["chem102"] == 1) {
-            array_push($coreElec, "102");
+            array_push($concenElec, "102");
           }
           if($_POST["chem1021"] == 1) {
-            array_push($coreElec, "1021");
+            array_push($concenElec, "1021");
           }
           if($_POST["chem200"] == 1) {
-            array_push($coreElec, "200");
+            array_push($concenElec, "200");
           }
           if($_POST["chem202"] == 1) {
-            array_push($coreElec, "202");
+            array_push($concenElec, "202");
           }
           if($_POST["chem2021"] == 1) {
-            array_push($coreElec, "2021");
+            array_push($concenElec, "2021");
           }
           if($_POST["chem205"] == 1) {
-            array_push($coreElec, "205");
+            array_push($concenElec, "205");
           }
           if($_POST["chem215"] == 1) {
-            array_push($coreElec, "215");
+            array_push($concenElec, "215");
           }
           if($_POST["chem219"] == 1) {
-            array_push($coreElec, "219");
+            array_push($concenElec, "219");
           }
           if($_POST["chem301"] == 1) {
-            array_push($coreElec, "301");
+            array_push($concenElec, "301");
           }
           if($_POST["chem3011"] == 1) {
-            array_push($coreElec, "3011");
+            array_push($concenElec, "3011");
           }
           if($_POST["chem302"] == 1) {
-            array_push($coreElec, "302");
+            array_push($concenElec, "302");
           }
           if($_POST["chem3021"] == 1) {
-            array_push($coreElec, "3021");
+            array_push($concenElec, "3021");
           }
           if($_POST["phys181"] == 1) {
-            array_push($coreElec, "181");
+            array_push($concenElec, "181");
           }
           if($_POST["phys191"] == 1) {
-            array_push($coreElec, "191");
+            array_push($concenElec, "191");
           }
           if($_POST["phys182"] == 1) {
-            array_push($coreElec, "182");
+            array_push($concenElec, "182");
           }
           if($_POST["phys192"] == 1) {
-            array_push($coreElec, "192");
+            array_push($concenElec, "192");
           }
           if($_POST["stat351"] == 1) {
-            array_push($coreElec, "351");
+            array_push($concenElec, "351");
           }
 
 

@@ -39,7 +39,8 @@
 		<center>
 			 <div class="well well-lg">
 			 					<div style="text-align:left">
-                    <label for="sel1" style="font-size:170%;">Courses Required For Graduation:</label><br><hr>
+                    <label for="sel1" style="font-size:170%;">Courses Required For Graduation:</label><br>
+					<span style='color:red'>*</span> - All courses in this area are required.<br><hr>
 										
 										
 								 
@@ -53,6 +54,7 @@
 		$coreElec = $_SESSION['coreElec'];
 		$relatedArea = $_SESSION['relatedArea'];
 		$concenCore = $_SESSION['concenCore'];
+		$concenElec = $_SESSION['concenElec'];
     $coreCourse = 34;
     $coreElecHR = 6;
     $relatedAreaHR = 10;
@@ -78,10 +80,16 @@
 		
     $sql = "SELECT * FROM `dscience`";
     $results = $conn->query($sql);
-		$sql2 = "SELECT * FROM `dscience` WHERE prefix = 'CSC' AND (number != 240 ) AND (number != 300 )AND (number != 315 )AND (number != 322 )AND (number != 409 )AND (number != 412 )AND (number != 413 )AND (number != 415 )AND (number != 420 )AND (number != 421 )AND (number != 430 )AND (number != 435 )AND (number != 452 )";
+		$sql2 = "SELECT * FROM `dscience` WHERE type = 'CC'";
 		$results2 = $conn->query($sql2);
-		$sql3 = "SELECT * FROM `dscience` WHERE (prefix = 'CSC' OR prefix = 'MATH') AND (number = 300 )AND (number = 315 )AND (number = 322 )AND (number = 409 )AND (number = 412 )AND (number = 413 )AND (number= 415 )AND (number = 420 )AND (number = 421 )AND (number = 430 )AND (number = 435 )AND (number = 452 )";
+		$sql3 = "SELECT * FROM `dscience` WHERE type='CE'";
 		$results3 = $conn->query($sql3);
+		$sql4 = "SELECT * FROM `dscience` WHERE type='RAR'";
+		$results4 = $conn->query($sql4);
+		$sql5 = "SELECT * FROM `dscience` WHERE type='CCE'";
+		$results5 = $conn->query($sql5);
+		$sql6 = "SELECT * FROM `dscience` WHERE type='CCR'";
+		$results6 = $conn->query($sql6);
 		//Core Courses
 		echo "<label for='sel1' style='font-size:150%;'>Core Courses:<span style='color:red'>*</span></label><br>";
 		echo "<div style='margin-left:25px'>";
@@ -110,16 +118,19 @@
 		$x=0;
 
     while($row=$results3->fetch_assoc()) {
-			echo $row;
-				$x=0;
-				for($x;$x<sizeof($coreElec);$x++) {
-            if($row["number"] == $coreElec[$x]) {
-								$coreElecHR = $coreElecHR - $row["hours"];
-								break;
-						}
-						else {
-							if($x==sizeof($courses)-1) {
-								echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
+			if($coreElecHR <= 0) {
+				$coreElecHR = 0;
+				break;
+			}	
+				
+			for($x=0;$x<sizeof($coreElec);$x++) {
+				if($row["number"] == $coreElec[$x]) {
+							$coreElecHR = $coreElecHR - $row["hours"];
+							break;
+					}
+				else {
+					if($x==sizeof($coreElec)-1) {
+						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
 
 							}
 						}
@@ -127,12 +138,14 @@
     }
 		echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $coreElecHR . "</label><br><hr>";
 		
+		
+		
 		//Related Area
 		echo "<label for='sel1' style='font-size:150%;'>Related Area:<span style='color:red'>*</span></label><br>";
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		while($row=$results->fetch_assoc()) {
+		while($row=$results4->fetch_assoc()) {
 			$x=0;
 			for($x;$x<sizeof($relatedArea);$x++) {
 				if($row["number"] == $relatedArea[$x]) {
@@ -140,7 +153,7 @@
 					break;
 				}
 				else {
-					if($x==sizeof($courses)-1) {
+					if($x==sizeof($relatedArea)-1) {
 						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
 
 					}
@@ -155,7 +168,7 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		while($row=$results->fetch_assoc()) {
+		while($row=$results6->fetch_assoc()) {
 			$x=0;
 			for($x;$x<sizeof($concenCore);$x++) {
 				if($row["number"] == $concenCore[$x]) {
@@ -163,7 +176,7 @@
 					break;
 				}
 				else {
-					if($x==sizeof($courses)-1) {
+					if($x==sizeof($concenCore)-1) {
 						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
 
 					}
@@ -174,20 +187,27 @@
 
 
 
-		//Concentration Electives
-		echo "<label for='sel1' style='font-size:150%;'>Concentration Electives:<span style='color:red'>*</span></label><br>";
+		
+		
+				//Concentration Electives
+		echo "<label for='sel1' style='font-size:150%;'>Concentration Electives:</label><br>";
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		while($row=$results->fetch_assoc()) {
+		while($row=$results5->fetch_assoc()) {
+			if($concenElecHR <= 0) {
+				$concenElecHR = 0;
+				break;
+			}	
 			$x=0;
+			
 			for($x;$x<sizeof($concenElec);$x++) {
 				if($row["number"] == $concenElec[$x]) {
 					$concenElecHR = $concenElecHR - $row["hours"];
 					break;
 				}
 				else {
-					if($x==sizeof($courses)-1) {
+					if($x==sizeof($concenElec)-1) {
 						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
 
 					}
@@ -195,9 +215,11 @@
 				}
 			}
 				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $concenElecHR . "</label><br><hr>";
+		
+		
 		?>
 		</div>
-
+		<a href="/index.php" style="color:#009eee" onMouseOver="this.style.color='blue'"><strong>Return to home page</strong></a>
 			</div>
 		</center>
 		
