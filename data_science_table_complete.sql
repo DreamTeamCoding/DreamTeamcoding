@@ -43,7 +43,7 @@ CREATE TABLE `data_science_table` (
 
 INSERT INTO `data_science_table` (`prefix`, `number`, `class`, `hours`, `availability`, `type`) VALUES
 ('CSC', 114, 'Introduction to Computer Science', 3, 'S/F', 'CC'),
-('CSC', 115, 'Introduction to Computer Science', 3, 'S/F', 'CC'),
+('CSC', 115, 'Programming I', 3, 'S/F', 'CC'),
 ('CSC', 160, 'Computer Science Major Orientation Seminar', 1, 'S/F', 'CC'),
 ('CSC', 215, 'Programming II', 3, 'S/F', 'CC'),
 ('CSC', 218, 'Data Structures', 3, 'S/F', 'CC'),
