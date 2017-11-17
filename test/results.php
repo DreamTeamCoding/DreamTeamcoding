@@ -38,7 +38,7 @@
 		<img src="/logo.png" style="height: 100px; width:100px; position: absolute; left:0;top:0;">
 		<center>
 			 <div class="well well-lg">
-			 					<div style="text-align:left">
+			 					<div style="text-align:left; font-size: 15px;">
                     <label for="sel1" style="font-size:170%;">Courses Required For Graduation:</label><br>
 					<span style='color:red'>*</span> - All courses in this area are required.<br><hr>
 										
@@ -50,20 +50,34 @@
     <?php
 		error_reporting( error_reporting() & ~E_NOTICE );
     session_start();
-		$courses = $_SESSION['courses'];
+		$courses = $_SESSION['courses'];		//Bring in all courses selected per section
 		$coreElec = $_SESSION['coreElec'];
 		$relatedArea = $_SESSION['relatedArea'];
 		$concenCore = $_SESSION['concenCore'];
 		$concenElec = $_SESSION['concenElec'];
-    $coreCourse = 34;
+    $coreCourse = 34;		//Total Credit hours required for each section
     $coreElecHR = 6;
     $relatedAreaHR = 10;
     $concenCoreHR = 12;
     $concenElecHR = 7;
-    $freeElecHR = 16;
+		$freeElecHR = 16;
+		$coreElecRemain = array();		//These two Remain variables hold the remaining courses output
+		$concenElecRemain = array();	//In the case that the hours remaining does NOT equal 0
 
 		echo "<br>";
 		
+
+	//Generate Passphrase
+	$stuff = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+	$pass = array(); 
+	$alphaLength = strlen($stuff) - 1;
+	for ($i = 0; $i < 8; $i++) {
+			$num = rand(0, $alphaLength);
+			array_push($pass, $stuff[$num]);
+	}
+
+
+
 		
 		
 		$servername = 'localhost';
@@ -90,6 +104,7 @@
 		$results5 = $conn->query($sql5);
 		$sql6 = "SELECT * FROM `dscience` WHERE type='CCR'";
 		$results6 = $conn->query($sql6);
+
 		//Core Courses
 		echo "<label for='sel1' style='font-size:150%;'>Core Courses:<span style='color:red'>*</span></label><br>";
 		echo "<div style='margin-left:25px'>";
@@ -130,12 +145,23 @@
 					}
 				else {
 					if($x==sizeof($coreElec)-1) {
-						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
-
+								$course = $row["prefix"] . $row["number"] . " " . $row["class"];
+								array_push($coreElecRemain, $course);
+								
 							}
 						}
 					}
-    }
+		}
+		if($coreElecHR != 0) {
+			foreach ($coreElecRemain as $item) {
+				echo $item;
+				echo "<br>";
+			}
+
+		}
+
+
+
 		echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $coreElecHR . "</label><br><hr>";
 		
 		
@@ -199,33 +225,70 @@
 				$concenElecHR = 0;
 				break;
 			}	
-			$x=0;
 			
-			for($x;$x<sizeof($concenElec);$x++) {
+			for($x=0;$x<sizeof($concenElec);$x++) {
 				if($row["number"] == $concenElec[$x]) {
-					$concenElecHR = $concenElecHR - $row["hours"];
-					break;
-				}
+							$concenElecHR = $concenElecHR - $row["hours"];
+							break;
+					}
 				else {
 					if($x==sizeof($concenElec)-1) {
-						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
-
+								$course = $row["prefix"] . $row["number"] . " " . $row["class"];
+								array_push($concenElecRemain, $course);
+								
+						  }
+						}
 					}
-					}
-				}
+		}
+		if($concenElecHR != 0) {
+			foreach ($concenElecRemain as $item) {
+				echo $item;
+				echo "<br>";
 			}
+
+		}
+
+
+
 				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $concenElecHR . "</label><br><hr>";
 		
 		
 		?>
-		</div>
-		<a href="/index.php" style="color:#009eee" onMouseOver="this.style.color='blue'"><strong>Return to home page</strong></a>
+		<div style='margin-left:25px'>
 			</div>
-		</center>
-		
-		<div class="container-fluid bg-blue" style="text-align:left">
+			<a href="/index.php" style="color:#009eee" onMouseOver="this.style.color='blue'"><strong>Return to home page</strong></a>
+		</div>
+	</center>
+	<center>
+		<!--
+		<div class="well well-lg">
+		<div style="text-align:left; font-size: 15px;">
+			<label for="sel1" style="font-size:170%;">What classification are you?</label><br><hr>
+			
+			<?php 
+			print_r($pass);
+							foreach ($pass as $item) {
+								echo $item;
+							}
+			?>
+	</div>
+		</div>
+		<div style="text-align:center;">
+			
+			</div><br/>
+			
+			
+			
+		</div>
+		-->
+	</center>
+	<div class="container-fluid bg-blue" style="text-align:left">
 		</div>
 		
+
+
+
+
 	</nav>  	
 	  
 	</body>
