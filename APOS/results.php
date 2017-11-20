@@ -119,7 +119,7 @@
 						}
 						else {
 							if($x == sizeof($courses)-1) {
-								echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
+								echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 
 							}
 						}
@@ -145,7 +145,7 @@
 					}
 				else {
 					if($x==sizeof($coreElec)-1) {
-								$course = $row["prefix"] . $row["number"] . " " . $row["class"];
+								$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
 								array_push($coreElecRemain, $course);
 								
 							}
@@ -180,7 +180,7 @@
 				}
 				else {
 					if($x==sizeof($relatedArea)-1) {
-						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
+						echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 
 					}
 					}
@@ -203,7 +203,7 @@
 				}
 				else {
 					if($x==sizeof($concenCore)-1) {
-						echo $row["prefix"] . $row["number"] . " " . $row["class"] . "<br>";
+						echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 
 					}
 					}
@@ -233,7 +233,7 @@
 					}
 				else {
 					if($x==sizeof($concenElec)-1) {
-								$course = $row["prefix"] . $row["number"] . " " . $row["class"];
+								$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
 								array_push($concenElecRemain, $course);
 								
 						  }
