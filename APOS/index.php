@@ -37,12 +37,18 @@
 		    die("Connection failed: " . $conn->connect_error);
 		} 
 		
-        if($choice == 1) {
+        if($_POST['choice'] == 1) {
             session_start();
-            $_SESSION['user_choice'] = $choice;
-
+						$_SESSION['user_choice'] = 1;
+						
             header('Refresh: 2; URL = courses.php');
-        }
+				}
+				else if($_POST['choice'] == 2) {
+					session_start();
+					$_SESSION['user_choice'] = 2;
+					
+					header('Refresh: 2; URL = courses2.php');
+			}
     }
 		?>
 
@@ -75,12 +81,12 @@
 		<center>
 			 <div class="well well-lg">
 				<div class="form-group" align="center">
-					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+					<form method="post" action="">
                         <div class="form-group">
                             <label for="sel1">Select concentration:</label>
-                            <select class="form-control"  style="width:40%" id="concen">
-                              <option value="<?php echo $choice=1;?>" name="dsci">Data Science</option>
-                              <option value="<?php echo $choice=2;?>" name="infor">Information Systems</option>
+                            <select name = "choice" class="form-control"  style="width:40%" id="concen">
+                              <option value="1" name="dsci">Data Science</option>
+                              <option value="2" name="info">Information Systems</option>
                             </select>
                           </div>
 						<div style="text-align:center;">
