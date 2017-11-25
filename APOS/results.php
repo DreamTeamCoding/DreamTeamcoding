@@ -110,21 +110,30 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 
-    while($row=$results2->fetch_assoc()) {
-				$x=0;
-				for($x;$x<sizeof($courses);$x++) {
-            if($row["number"] == $courses[$x]) {
-								$coreCourse = $coreCourse - $row["hours"];
-								break;
-						}
-						else {
-							if($x == sizeof($courses)-1) {
-								echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 
+		if(sizeof($courses)==0) {
+			while($row=$results2->fetch_assoc()) {
+				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
+			}
+		}
+		else {
+			while($row=$results2->fetch_assoc()) {
+						$x=0;
+						for($x;$x<sizeof($courses);$x++) {
+					if($row["number"] == $courses[$x]) {
+										$coreCourse = $coreCourse - $row["hours"];
+										break;
+								}
+								else {
+									if($x == sizeof($courses)-1) {
+										echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
+		
+									}
+								}
 							}
-						}
-					}
-    }
+			}
+
+		}
 		echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $coreCourse . "</label><br><hr>";
 		
 		//Core Electives
@@ -132,25 +141,33 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 
-    while($row=$results3->fetch_assoc()) {
-			if($coreElecHR <= 0) {
-				$coreElecHR = 0;
-				break;
-			}	
-				
-			for($x=0;$x<sizeof($coreElec);$x++) {
-				if($row["number"] == $coreElec[$x]) {
-							$coreElecHR = $coreElecHR - $row["hours"];
-							break;
-					}
-				else {
-					if($x==sizeof($coreElec)-1) {
-								$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
-								array_push($coreElecRemain, $course);
-								
+		if(sizeof($coreElec)==0) {
+			while($row=$results3->fetch_assoc()) {
+				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
+			}
+		}
+		else {
+			while($row=$results3->fetch_assoc()) {
+					if($coreElecHR <= 0) {
+						$coreElecHR = 0;
+						break;
+					}	
+						
+					for($x=0;$x<sizeof($coreElec);$x++) {
+						if($row["number"] == $coreElec[$x]) {
+									$coreElecHR = $coreElecHR - $row["hours"];
+									break;
 							}
-						}
-					}
+						else {
+							if($x==sizeof($coreElec)-1) {
+										$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
+										array_push($coreElecRemain, $course);
+										
+									}
+								}
+							}
+				}
+
 		}
 		if($coreElecHR != 0) {
 			foreach ($coreElecRemain as $item) {
@@ -171,21 +188,30 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		while($row=$results4->fetch_assoc()) {
-			$x=0;
-			for($x;$x<sizeof($relatedArea);$x++) {
-				if($row["number"] == $relatedArea[$x]) {
-					$relatedAreaHR = $relatedAreaHR - $row["hours"];
-					break;
-				}
-				else {
-					if($x==sizeof($relatedArea)-1) {
-						echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 
+		if(sizeof($relatedArea)==0) {
+			while($row=$results4->fetch_assoc()) {
+				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
+			}
+		}
+		else {
+			while($row=$results4->fetch_assoc()) {
+				$x=0;
+				for($x;$x<sizeof($relatedArea);$x++) {
+					if($row["number"] == $relatedArea[$x]) {
+						$relatedAreaHR = $relatedAreaHR - $row["hours"];
+						break;
 					}
+					else {
+						if($x==sizeof($relatedArea)-1) {
+							echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
+	
+						}
+						}
 					}
 				}
-			}
+
+		}
 				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $relatedAreaHR . "</label><br><hr>";
 
 		
@@ -194,21 +220,29 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		while($row=$results6->fetch_assoc()) {
-			$x=0;
-			for($x;$x<sizeof($concenCore);$x++) {
-				if($row["number"] == $concenCore[$x]) {
-					$concenCoreHR = $concenCoreHR - $row["hours"];
-					break;
-				}
-				else {
-					if($x==sizeof($concenCore)-1) {
-						echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
-
-					}
-					}
-				}
+		if(sizeof($concenCore)==0) {
+			while($row=$results6->fetch_assoc()) {
+				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 			}
+		}
+		else {
+			while($row=$results6->fetch_assoc()) {
+				$x=0;
+				for($x;$x<sizeof($concenCore);$x++) {
+					if($row["number"] == $concenCore[$x]) {
+						$concenCoreHR = $concenCoreHR - $row["hours"];
+						break;
+					}
+					else {
+						if($x==sizeof($concenCore)-1) {
+							echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
+	
+						}
+						}
+					}
+				}
+
+		}
 				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $concenCoreHR . "</label><br><hr>";
 
 
@@ -220,25 +254,33 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		while($row=$results5->fetch_assoc()) {
-			if($concenElecHR <= 0) {
-				$concenElecHR = 0;
-				break;
-			}	
-			
-			for($x=0;$x<sizeof($concenElec);$x++) {
-				if($row["number"] == $concenElec[$x]) {
-							$concenElecHR = $concenElecHR - $row["hours"];
-							break;
-					}
-				else {
-					if($x==sizeof($concenElec)-1) {
-								$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
-								array_push($concenElecRemain, $course);
-								
-						  }
+		if(sizeof($concenElec)==0) {
+			while($row=$results5->fetch_assoc()) {
+				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
+			}
+		}
+		else {
+			while($row=$results5->fetch_assoc()) {
+				if($concenElecHR <= 0) {
+					$concenElecHR = 0;
+					break;
+				}	
+				
+				for($x=0;$x<sizeof($concenElec);$x++) {
+					if($row["number"] == $concenElec[$x]) {
+								$concenElecHR = $concenElecHR - $row["hours"];
+								break;
 						}
-					}
+					else {
+						if($x==sizeof($concenElec)-1) {
+									$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
+									array_push($concenElecRemain, $course);
+									
+							  }
+							}
+						}
+			}
+
 		}
 		if($concenElecHR != 0) {
 			foreach ($concenElecRemain as $item) {
