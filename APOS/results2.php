@@ -341,6 +341,8 @@
 							//=====Push All Courses to String to add to database
 			
 			?>
+			<br><br>
+			<span style="font-size:80%;"><span style='color:red'>*</span>Note: This passphrase is <strong>case-sensitive</strong>!</span>
 	</div>
 		</div>
 		<div style="text-align:center;">
