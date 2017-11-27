@@ -88,8 +88,16 @@
 														<div style='margin-left:25px'><br>
 														1. Your results will output in its designated category<br>
 														2. The results page displays the courses that have not been taken in each category<br>
-														3. The remaining number of credit hours is displayed under each category<br>
+														3. The remaining number of credit hours is displayed under each category<br><hr>
                           </div>
+													<label for="sel1"><p  style="font-size:150%;">Returning users:</p></label>
+														<div style='margin-left:25px'><br>
+														1. Receive <strong>case-sensitive</strong> passphrase<br>
+														2. Enter passphrase on the homepage and click submit<br>
+														3. Recieve your results!<br>
+                          </div>
+
+
 													</div>
 
 						<div style="text-align:center;">
