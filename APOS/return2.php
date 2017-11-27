@@ -49,36 +49,7 @@
 
     <?php
 		error_reporting( error_reporting() & ~E_NOTICE );
-    session_start();
-		$courses = $_SESSION['courses'];		//Bring in all courses selected per section
-		$coreElec = $_SESSION['coreElec'];
-		$relatedArea = $_SESSION['relatedArea'];
-		$concenCore = $_SESSION['concenCore'];
-		$concenElec = $_SESSION['concenElec'];
-    $coreCourse = 34;		//Total Credit hours required for each section
-    $coreElecHR = 6;
-    $relatedAreaHR = 10;
-    $concenCoreHR = 12;
-    $concenElecHR = 7;
-		$freeElecHR = 16;
-		$coreElecRemain = array();		//These two Remain variables hold the remaining courses output
-		$concenElecRemain = array();	//In the case that the hours remaining does NOT equal 0
-
-		echo "<br>";
-		
-
-	//Generate Passphrase
-	$stuff = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ1234567890';
-	$pass = array(); 
-	$alphaLength = strlen($stuff) - 1;
-	for ($i = 0; $i < 8; $i++) {
-			$num = rand(0, $alphaLength);
-			array_push($pass, $stuff[$num]);
-	}
-
-
-
-		
+		session_start();
 		
 		$servername = 'localhost';
 		$DBusername = 'root';
@@ -87,30 +58,54 @@
 		
 		// Create connection
 		$conn = new mysqli($servername, $DBusername, $DBpassword, $dbname);
-		// Check connection
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		} 
-		
-    $sql = "SELECT * FROM `dscience`";
+	//Check database for correct courses and assign them
+	$courses = $_SESSION['courses'];
+
+	
+	
+	//$courses = $_SESSION['courses'];		//Bring in all courses selected per section
+	
+    $coreCourse = 34;		//Total Credit hours required for each section
+    $coreElecHR = 6;
+    $relatedAreaHR = 10;
+    $concenCoreHR = 15;
+    $concenElecHR = 3;
+	$coreElecRemain = array();		//These two Remain variables hold the remaining courses output
+	$concenElecRemain = array();	//In the case that the hours remaining does NOT equal 0
+	
+	echo "<br>";
+	
+	
+	
+	
+	
+	
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+	
+    $sql = "SELECT * FROM `isystems`";
     $results = $conn->query($sql);
-		$sql2 = "SELECT * FROM `dscience` WHERE type = 'CC'";
-		$results2 = $conn->query($sql2);
-		$sql3 = "SELECT * FROM `dscience` WHERE type='CE'";
-		$results3 = $conn->query($sql3);
-		$sql4 = "SELECT * FROM `dscience` WHERE type='RAR'";
-		$results4 = $conn->query($sql4);
-		$sql5 = "SELECT * FROM `dscience` WHERE type='CCE'";
-		$results5 = $conn->query($sql5);
-		$sql6 = "SELECT * FROM `dscience` WHERE type='CCR'";
-		$results6 = $conn->query($sql6);
+	$sql2 = "SELECT * FROM `isystems` WHERE type = 'CC'";
+	$results2 = $conn->query($sql2);
+	$sql3 = "SELECT * FROM `isystems` WHERE type='CE'";
+	$results3 = $conn->query($sql3);
+	$sql4 = "SELECT * FROM `isystems` WHERE type='RAR'";
+	$results4 = $conn->query($sql4);
+	$sql5 = "SELECT * FROM `isystems` WHERE type='CCE'";
+	$results5 = $conn->query($sql5);
+	$sql6 = "SELECT * FROM `isystems` WHERE type='CCR'";
+	$results6 = $conn->query($sql6);
+	
+	//Core Courses
+	echo "<label for='sel1' style='font-size:150%;'>Core Courses:<span style='color:red'>*</span></label><br>";
+	echo "<div style='margin-left:25px'>";
+	$x=0;
+	
+	
 
-		//Core Courses
-		echo "<label for='sel1' style='font-size:150%;'>Core Courses:<span style='color:red'>*</span></label><br>";
-		echo "<div style='margin-left:25px'>";
-		$x=0;
-
-
+	
 		if(sizeof($courses)==0) {
 			while($row=$results2->fetch_assoc()) {
 				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
@@ -140,9 +135,9 @@
 		//Core Electives
 		echo "<label for='sel1' style='font-size:150%;'>Core Electives:</label><br>";
 		echo "<div style='margin-left:25px'>";
-		$x=0;
+        $x=0;
 
-		if(sizeof($coreElec)==0) {
+		if(sizeof($courses)==0) {
 			while($row=$results3->fetch_assoc()) {
 				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 			}
@@ -154,14 +149,14 @@
 						break;
 					}	
 						
-					for($x=0;$x<sizeof($coreElec);$x++) {
-						if($row["number"] == $coreElec[$x]) {
+					for($x=0;$x<sizeof($courses);$x++) {
+						if($row["number"] == $courses[$x]) {
 									$coreElecHR = $coreElecHR - $row["hours"];
 									break;
 							}
 						else {
 							if($x==sizeof($coreElec)-1) {
-										$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  "  - " .$row["hours"] . "h";
+										$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
 										array_push($coreElecRemain, $course);
 										
 									}
@@ -190,7 +185,7 @@
 		$x=0;
 		
 
-		if(sizeof($relatedArea)==0) {
+		if(sizeof($courses)==0) {
 			while($row=$results4->fetch_assoc()) {
 				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 			}
@@ -198,13 +193,13 @@
 		else {
 			while($row=$results4->fetch_assoc()) {
 				$x=0;
-				for($x;$x<sizeof($relatedArea);$x++) {
-					if($row["number"] == $relatedArea[$x]) {
+				for($x;$x<sizeof($courses);$x++) {
+					if($row["number"] == $courses[$x]) {
 						$relatedAreaHR = $relatedAreaHR - $row["hours"];
 						break;
 					}
 					else {
-						if($x==sizeof($relatedArea)-1) {
+						if($x==sizeof($courses)-1) {
 							echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 	
 						}
@@ -221,7 +216,7 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		if(sizeof($concenCore)==0) {
+		if(sizeof($courses)==0) {
 			while($row=$results6->fetch_assoc()) {
 				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 			}
@@ -229,13 +224,13 @@
 		else {
 			while($row=$results6->fetch_assoc()) {
 				$x=0;
-				for($x;$x<sizeof($concenCore);$x++) {
-					if($row["number"] == $concenCore[$x]) {
+				for($x;$x<sizeof($courses);$x++) {
+					if($row["number"] == $courses[$x]) {
 						$concenCoreHR = $concenCoreHR - $row["hours"];
 						break;
 					}
 					else {
-						if($x==sizeof($concenCore)-1) {
+						if($x==sizeof($courses)-1) {
 							echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 	
 						}
@@ -255,7 +250,7 @@
 		echo "<div style='margin-left:25px'>";
 		$x=0;
 		
-		if(sizeof($concenElec)==0) {
+		if(sizeof($courses)==0) {
 			while($row=$results5->fetch_assoc()) {
 				echo $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h" . "<br>";
 			}
@@ -267,13 +262,13 @@
 					break;
 				}	
 				
-				for($x=0;$x<sizeof($concenElec);$x++) {
-					if($row["number"] == $concenElec[$x]) {
+				for($x=0;$x<sizeof($courses);$x++) {
+					if($row["number"] == $courses[$x]) {
 								$concenElecHR = $concenElecHR - $row["hours"];
 								break;
 						}
 					else {
-						if($x==sizeof($concenElec)-1) {
+						if($x==sizeof($courses)-1) {
 									$course = $row["prefix"] . $row["number"] . " " . $row["class"] .  " - " .$row["hours"] . "h";
 									array_push($concenElecRemain, $course);
 									
@@ -292,30 +287,10 @@
 		}
 
 
-		echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $concenElecHR . "</label><br><hr>";
+
+				echo "</div><br><label for='sel1' style='font-size:100%;'>Total Credit Hours Remaining - " . $concenElecHR . "</label><br><hr>";
 		
 
-				//=====Saves Courses in order to remember user
-				$courseChoice = "";
-				
-				for($x=0;$x<sizeof($courses);$x++) {
-					$courseChoice .= $courses[$x] . ",";
-				}
-				for($x=0;$x<sizeof($coreElec);$x++) {
-					$courseChoice .= $coreElec[$x] . ",";
-				}
-				for($x=0;$x<sizeof($relatedArea);$x++) {
-					$courseChoice .= $relatedArea[$x] . ",";
-				}
-				for($x=0;$x<sizeof($concenCore);$x++) {
-					$courseChoice .= $concenCore[$x] . ",";
-				}
-				for($x=0;$x<sizeof($concenElec);$x++) {
-					$courseChoice .= $concenElec[$x];
-					if($x == sizeof($concenElec)-1)
-						break; 
-					$courseChoice .= ",";
-				}
 				
 				
 				
@@ -326,48 +301,7 @@
 			<a href="/index.php" style="color:#009eee" onMouseOver="this.style.color='blue'"><strong>Return to home page</strong></a>
 		</div>
 	</center>
-	<center>
-		
-		<div class="well well-lg">
-		<div style="text-align:left; font-size: 15px;">
-			<label for="sel1" style="font-size:150%;">Returning Users:</label><br><hr>
-			
-			<p>
-			If you plan on returning, and would like to save your progress, please use the following passphrase to return to this page.
-			</p>
-		
 
-			<p>
-			</p>
-			<strong>Passphrase: </strong>
-			<?php
-			 
-			$key = "";
-							foreach ($pass as $item) {
-								echo $item;
-								$key .= $item;
-							}
-							
-							$concen = 1;
-							
-							
-							$sqlCourses = "INSERT INTO users (`key`, `concen`, `courses`) VALUES ('$key', '$concen', '$courseChoice')";
-							// Check connection
-							$conn->query($sqlCourses);
-							//=====Push All Courses to String to add to database
-			
-			?>
-	</div>
-		</div>
-		<div style="text-align:center;">
-			
-			</div><br/>
-			
-			
-			
-		</div>
-		
-	</center>
 	<div class="container-fluid bg-blue" style="text-align:left">
 		</div>
 		
