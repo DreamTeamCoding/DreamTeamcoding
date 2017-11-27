@@ -122,10 +122,7 @@
 						<div style="text-align:center;">
 							<input type="submit" class="btn" role="button"></input>
 						</div><br/>
-						<p> Need help?
-						<a href="/help.php" style="color:#009eee" onMouseOver="this.style.color='blue'"><strong>Click here</strong></a>
-						<img src="/logo.png" style="height: 100px; width:100px; position: absolute; left:0;top:0;">
-						</p>
+
 					</form> 
 				</div>	
 			</div>	
