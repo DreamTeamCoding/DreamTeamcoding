@@ -56,27 +56,29 @@
 		
 		
 		
-		
-		$sql = "SELECT * FROM `users`";
-		$results2 = $conn->query($sql);
-		while($row=$results2->fetch_assoc()) {
-			if($_POST['phrase'] == $row['key']) {
-				session_start();
-				$course = $row['courses'];
-				$courses = explode(",", $course);
-		
-				$_SESSION['courses'] = $courses;
-				
-				
-				
-				if($row['concen'] == 1) {
-					header('Refresh: 2; URL = return.php');
+		if(!empty($_POST['phrase'])) {
+
+			$sql = "SELECT * FROM `users`";
+			$results2 = $conn->query($sql);
+			while($row=$results2->fetch_assoc()) {
+				if($_POST['phrase'] == $row['key']) {
+					session_start();
+					$course = $row['courses'];
+					$courses = explode(",", $course);
+			
+					$_SESSION['courses'] = $courses;
+					
+					
+					
+					if($row['concen'] == 1) {
+						header('Refresh: 2; URL = return.php');
+					}
+					else {
+						header('Refresh: 2; URL = return2.php');
+					}
 				}
-				else {
-					header('Refresh: 2; URL = return2.php');
-				}
+			
 			}
-		
 		}
 		
 	}
