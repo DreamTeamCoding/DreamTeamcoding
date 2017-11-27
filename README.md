@@ -23,3 +23,7 @@ Step5:
 Video tutorial by Hagen Hodgkins
 
 https://www.youtube.com/watch?v=jkRY2QqCa2c
+
+Video Overview of the returning user feature
+
+https://www.youtube.com/watch?v=YWmy2Fl1tNk
