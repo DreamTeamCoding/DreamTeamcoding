@@ -47,7 +47,7 @@ h4 {
 	background-color: #f6f6f6;	
 }
 .bg-blue {
-	background-color: #0039A6E7;
+	background-color: #0039A6;
 	padding: 100px 100px;
 }
 .logo-small {
@@ -59,7 +59,7 @@ h4 {
 	font-size: 200px;
 }
 .btn {
-	background-color: #0039A6E7;
+	background-color: #0039A6;
 	color: #fff;
 	border: 2px solid #000000;
 }
@@ -70,7 +70,7 @@ h4 {
 }
 .btn:hover {
 	background-color: white;
-	color: #0039A6E7;
+	color: #0039A6;
 }
 .thumbnail {
 	padding: 0 0 15px 0;
