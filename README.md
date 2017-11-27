@@ -20,3 +20,5 @@ Step5:
   A.P.O.S will generate the number of credits needed to complete each section and provide a list of classes that would fufill that section.
 
 
+Video tutorial by Hagen Hodgkins
+https://www.youtube.com/watch?v=jkRY2QqCa2c
